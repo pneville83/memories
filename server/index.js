@@ -2,10 +2,12 @@ import express from "express";
 import bodyParser from  "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
+import dotenv from  'dotenv';
 
 import  postRoutes from './routes/posts.js'
 
 const app = express();
+dotenv.config();
 
 
 
@@ -17,8 +19,8 @@ app.use('/posts', postRoutes);
 
 // para la base datos mondodb atlas
 
-const CONNECTION_URL= 'mongodb+srv://memories:johnpeter83@chatbot.iv9fjrd.mongodb.net/?retryWrites=true&w=majority'
-const PORT= process.env.PORT || 4000;
+const CONNECTION_URL= process.env.CONNECTION_URL;
+const PORT= process.env.PORT;
 
 mongoose.connect(CONNECTION_URL)
   .then(()=>app.listen(PORT, ()=> console.log(`Server is running on port: ${PORT}`)))
