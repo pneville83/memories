@@ -17,10 +17,14 @@ app.use(cors());
 
 app.use('/posts', postRoutes);
 
+app.get('/', (req, res)=> {
+  res.send('Hello to memories API')
+});
+
 // para la base datos mondodb atlas
 
 const CONNECTION_URL= process.env.CONNECTION_URL;
-const PORT= process.env.PORT;
+const PORT= process.env.PORT || 4000;
 
 mongoose.connect(CONNECTION_URL)
   .then(()=>app.listen(PORT, ()=> console.log(`Server is running on port: ${PORT}`)))
